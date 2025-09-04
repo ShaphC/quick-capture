@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Join the List</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Join Our Email List</h1>
+      <p>
+        Where you'll get scripts that will help you automate your tasks every
+        week.
+      </p>
+      <form method="POST" action="/">
+        <input
+          type="email"
+          name="email"
+          placeholder="Enter your email"
+          required
+        />
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </body>
+</html>
