@@ -16,7 +16,7 @@ jobs:
 
       # 2️⃣ Set up SSH with your deploy key
       - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.8.1
+        uses: webfactory/ssh-agent@v0.8
         with:
           ssh-private-key: ${{ secrets.DEPLOY_KEY }}
 
