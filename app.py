@@ -5,7 +5,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    static_url_path='/quick-capture/static',  # <-- tells Flask the URL prefix
+    template_folder='templates'
+)
 
 CONVERTKIT_API_URL = "https://api.convertkit.com/v3/forms/YOUR_FORM_ID/subscribe"
 CONVERTKIT_API_KEY = os.getenv("CONVERTKIT_API_KEY")
@@ -14,16 +18,11 @@ CONVERTKIT_API_KEY = os.getenv("CONVERTKIT_API_KEY")
 def index():
     if request.method == "POST":
         email = request.form.get("email")
-        landing_page = request.form.get("landing_page")
         if email:
             try:
                 requests.post(
                     CONVERTKIT_API_URL,
-                    data={
-                        "email": email, 
-                        "api_key": CONVERTKIT_API_KEY, 
-                        "fields[landing_page]": landing_page
-                    },
+                    data={"email": email, "api_key": CONVERTKIT_API_KEY},
                     timeout=5
                 )
             except Exception as e:
